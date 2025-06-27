@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+        body { 
+            font-family: Arial, Helvetica, sans-serif; 
+            margin: 20px;
+            background-color: rgb(8, 74, 255);
+        }
+
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+        }
+
+        h1 {
+            color: rgb(224, 149, 50);
+        }
+        
+        input { 
+            padding: 10px; 
+            margin: 5px 0; 
+            width: 100%; 
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 625px;
+        }
+
+        table { 
+            width: 625px; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 8px; 
+            text-align: left; 
+        }
+
+        th { 
+            background-color: #f4f4f4; 
+        }
+
+        #listaProdutos {
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Produtos</h1>
+        <input type="text" id="nome" placeholder="Nome do Produto" autocomplete="off">
+        <input type="number" id="preco" placeholder="Preço">
+        <button onclick="adicionarProduto()">Adicionar Produto</button>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody id="listaProdutos">
+                <!-- Produtos serão adicionados aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function adicionarProduto() {
+            const nome = document.getElementById('nome').value;
+            const preco = document.getElementById('preco').value;
+
+            if (nome && preco) {
+                const tabela = document.getElementById('listaProdutos');
+                const linha = tabela.insertRow();
+                linha.insertCell(0).innerText = nome;
+                linha.insertCell(1).innerText = 'R$ ' + parseFloat(preco).toFixed(2);
+
+                document.getElementById('nome').value = '';
+                document.getElementById('preco').value = '';
+            } else {
+                alert('Preencha todos os campos!');
+            }
+        }
+    </script>
+</body>
+</html>
